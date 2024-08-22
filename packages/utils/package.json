@@ -1,0 +1,40 @@
+{
+  "name": "@electron-suite/utils",
+  "version": "0.0.1",
+  "description": "Utils for Electron Suite",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "Bread Grocery<https://github.com/breadgrocery>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breadgrocery/electron-suite.git",
+    "directory": "packages/utils"
+  },
+  "bugs": {
+    "url": "https://github.com/breadgrocery/electron-suite/issues"
+  },
+  "homepage": "https://github.com/breadgrocery/electron-suite/tree/master/packages/utils#readme",
+  "keywords": [
+    "electron",
+    "suite"
+  ],
+  "scripts": {
+    "build": "unbuild"
+  },
+  "peerDependencies": {
+    "electron": ">=32.0.0",
+    "electron-window-state": "^5.0.3"
+  }
+}

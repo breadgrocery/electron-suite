@@ -1,0 +1,23 @@
+{
+  "name": "@electron-suite/playground",
+  "version": "0.0.1",
+  "description": "Playground for Electron Suite",
+  "private": true,
+  "main": "dist/main.js",
+  "author": "Bread Grocery<https://github.com/breadgrocery>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.node.json && tsc -p tsconfig.web.json",
+    "dev": "npm run build && electron ."
+  },
+  "devDependencies": {
+    "@electron-suite/optimizer": "workspace:*",
+    "@electron-suite/utils": "workspace:*",
+    "@electron-toolkit/preload": "^3.0.1",
+    "@electron-toolkit/tsconfig": "^1.0.1",
+    "rimraf": "6.0.1"
+  },
+  "peerDependencies": {
+    "electron": ">=32.0.0"
+  }
+}
