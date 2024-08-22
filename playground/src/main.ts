@@ -1,7 +1,7 @@
-import { join } from "path";
 import { optimizer } from "@electron-suite/optimizer";
 import { application, env, is, window } from "@electron-suite/utils";
-import { app, BrowserWindow } from "electron";
+import { BrowserWindow, app } from "electron";
+import { join } from "path";
 
 const createWindow = () => {
   // Create the browser window.

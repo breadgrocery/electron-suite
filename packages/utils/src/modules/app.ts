@@ -1,5 +1,4 @@
-import { app, BrowserWindow, Menu } from "electron";
-
+import { BrowserWindow, Menu, app } from "electron";
 import { is } from "./is";
 
 export interface Application {

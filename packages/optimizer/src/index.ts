@@ -1,6 +1,6 @@
-import { linuxOptimizer, LinuxOptimizer } from "./modules/linux";
-import { macOSOptimizer, MacOSOptimizer } from "./modules/macos";
-import { windowsOptimizer, WindowsOptimizer } from "./modules/windows";
+import { LinuxOptimizer, linuxOptimizer } from "./modules/linux";
+import { MacOSOptimizer, macOSOptimizer } from "./modules/macos";
+import { WindowsOptimizer, windowsOptimizer } from "./modules/windows";
 
 export interface Optimizer {
   windows: WindowsOptimizer;

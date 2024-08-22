@@ -1,7 +1,7 @@
 {
-  "name": "@electron-suite/utils",
+  "name": "@electron-suite/ipc",
   "version": "0.0.2",
-  "description": "Utils for Electron",
+  "description": "IPCs for Electron",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -20,21 +20,20 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/breadgrocery/electron-suite.git",
-    "directory": "packages/utils"
+    "directory": "packages/ipc"
   },
   "bugs": {
     "url": "https://github.com/breadgrocery/electron-suite/issues"
   },
-  "homepage": "https://github.com/breadgrocery/electron-suite/tree/master/packages/utils",
+  "homepage": "https://github.com/breadgrocery/electron-suite/tree/master/packages/ipc",
   "keywords": [
     "electron",
-    "utils"
+    "ipc"
   ],
   "scripts": {
     "build": "unbuild"
   },
   "peerDependencies": {
-    "electron": ">=32.0.0",
-    "electron-window-state": "^5.0.3"
+    "electron": ">=32.0.0"
   }
 }
