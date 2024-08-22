@@ -16,6 +16,7 @@
     "publish": "pnpm changeset publish"
   },
   "devDependencies": {
+    "@changesets/changelog-git": "^0.2.0",
     "@changesets/cli": "^2.27.7",
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",

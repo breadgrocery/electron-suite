@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     devDependencies:
+      "@changesets/changelog-git":
+        specifier: ^0.2.0
+        version: 0.2.0
       "@changesets/cli":
         specifier: ^2.27.7
         version: 2.27.7
@@ -55,9 +58,6 @@ importers:
       electron:
         specifier: ">=32.0.0"
         version: 32.0.1
-      electron-window-state:
-        specifier: ^5.0.3
-        version: 5.0.3
 
   packages/optimizer:
     dependencies:
