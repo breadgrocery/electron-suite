@@ -11,5 +11,5 @@ export interface Optimizer {
 export const optimizer: Optimizer = {
   windows: windowsOptimizer,
   linux: linuxOptimizer,
-  macOS: macOSOptimizer,
+  macOS: macOSOptimizer
 };

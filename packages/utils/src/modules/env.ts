@@ -14,6 +14,6 @@ export const env: Env = {
     electron: process.versions.electron,
     chrome: process.versions.chrome,
     node: process.version,
-    app: app.getVersion(),
-  },
+    app: app.getVersion()
+  }
 };

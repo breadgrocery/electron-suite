@@ -1,8 +1,7 @@
-import { app, BrowserWindow } from "electron";
-import { is, env, window, application } from "@electron-suite/utils";
-
-import { optimizer } from "@electron-suite/optimizer";
 import { join } from "path";
+import { optimizer } from "@electron-suite/optimizer";
+import { application, env, is, window } from "@electron-suite/utils";
+import { app, BrowserWindow } from "electron";
 
 const createWindow = () => {
   // Create the browser window.
@@ -14,8 +13,8 @@ const createWindow = () => {
     webPreferences: {
       preload: join(__dirname, "./preload.js"),
       webSecurity: false,
-      sandbox: false,
-    },
+      sandbox: false
+    }
   });
 
   mainWindow.on("ready-to-show", () => {

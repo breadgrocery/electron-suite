@@ -1,4 +1,5 @@
 import { app, BrowserWindow, Menu } from "electron";
+
 import { is } from "./is";
 
 export interface Application {
@@ -43,5 +44,5 @@ export const application: Application = {
         app.quit();
       });
     }
-  },
+  }
 };

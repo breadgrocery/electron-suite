@@ -34,23 +34,19 @@ export const window: Window = {
       width: windowState.width || bounds.width,
       height: windowState.height || bounds.height,
       x: windowState.x || bounds.x,
-      y: windowState.y || bounds.y,
+      y: windowState.y || bounds.y
     });
 
     // Register listeners
     windowState.manage(window);
   },
   useExternalBrowser: (window: BrowserWindow) => {
-    window.webContents.setWindowOpenHandler((details) => {
+    window.webContents.setWindowOpenHandler(details => {
       shell.openExternal(details.url);
       return { action: "deny" };
     });
   },
-  adaptBackgroundColorScheme: (
-    window: BrowserWindow,
-    lightColor?: string,
-    darkColor?: string
-  ) => {
+  adaptBackgroundColorScheme: (window: BrowserWindow, lightColor?: string, darkColor?: string) => {
     const updatebackgroundColor = () => {
       const light = lightColor || "#FFFFFF";
       const dark = darkColor || "#000000";
@@ -59,5 +55,5 @@ export const window: Window = {
     };
     updatebackgroundColor();
     nativeTheme.on("updated", updatebackgroundColor);
-  },
+  }
 };

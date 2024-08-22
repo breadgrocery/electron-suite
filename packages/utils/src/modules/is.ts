@@ -13,11 +13,11 @@ export interface Is {
 
 export const is: Is = {
   env: {
-    dev: !app.isPackaged,
+    dev: !app.isPackaged
   },
   platform: {
     windows: process.platform === "win32",
     linux: process.platform === "linux",
-    macOS: process.platform === "darwin",
-  },
+    macOS: process.platform === "darwin"
+  }
 };

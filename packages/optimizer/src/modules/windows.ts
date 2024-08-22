@@ -14,5 +14,5 @@ export const windowsOptimizer: WindowsOptimizer = {
       window.setEnabled(false);
       window.setEnabled(true);
     });
-  },
+  }
 };

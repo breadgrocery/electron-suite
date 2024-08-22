@@ -1,7 +1,7 @@
 {
   "name": "@electron-suite/optimizer",
   "version": "0.0.1",
-  "description": "Optimizer for Electron Suite",
+  "description": "Optimizer for Electron",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -25,15 +25,14 @@
   "bugs": {
     "url": "https://github.com/breadgrocery/electron-suite/issues"
   },
-  "homepage": "https://github.com/breadgrocery/electron-suite/tree/master/packages/optimizer#readme",
+  "homepage": "https://github.com/breadgrocery/electron-suite/tree/master/packages/optimizer",
   "keywords": [
     "electron",
-    "suite"
+    "optimizer"
   ],
   "scripts": {
     "build": "unbuild"
   },
-  "devDependencies": {},
   "peerDependencies": {
     "electron": ">=32.0.0"
   }
