@@ -8,6 +8,7 @@
   "scripts": {
     "prepare": "husky",
     "preinstall": "npx only-allow pnpm",
+    "build:ipc": "pnpm run -C packages/ipc build",
     "build:optimizer": "pnpm run -C packages/optimizer build",
     "build:utils": "pnpm run -C packages/utils build",
     "dev": "pnpm run -C playground dev",
