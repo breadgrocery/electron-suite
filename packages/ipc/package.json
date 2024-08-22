@@ -1,6 +1,6 @@
 {
   "name": "@electron-suite/ipc",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "IPCs for Electron",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
