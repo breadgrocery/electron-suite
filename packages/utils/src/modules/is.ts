@@ -1,6 +1,6 @@
 import { app } from "electron";
 
-export interface Is {
+export interface IIs {
   env: {
     dev: boolean;
   };
@@ -11,7 +11,7 @@ export interface Is {
   };
 }
 
-export const is: Is = {
+export const is: IIs = {
   env: {
     dev: !app.isPackaged
   },

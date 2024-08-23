@@ -1,7 +1,7 @@
-import { BrowserWindow, nativeTheme, shell } from "electron";
+import { BrowserWindow, app, nativeTheme, shell } from "electron";
 import windowStateKeeper, { Options } from "electron-window-state";
 
-export interface Window {
+export interface IWindow {
   /**
    * Persist and restore the window state across application sessions.
    */
@@ -23,9 +23,14 @@ export interface Window {
     lightColor?: string,
     darkColor?: string
   ) => void;
+
+  /**
+   * This prevents the application from exiting and keeps it running in the background.
+   */
+  closeToHide: (window: BrowserWindow) => void;
 }
 
-export const window: Window = {
+export const window: IWindow = {
   persistWindowState: (window: BrowserWindow, options?: Options) => {
     // Restore window size
     const windowState = windowStateKeeper(options || {});
@@ -55,5 +60,15 @@ export const window: Window = {
     };
     updatebackgroundColor();
     nativeTheme.on("updated", updatebackgroundColor);
+  },
+  closeToHide: (window: BrowserWindow) => {
+    let quitting = false;
+    app.on("before-quit", () => (quitting = true));
+    window.on("close", event => {
+      if (!quitting) {
+        event.preventDefault();
+        window.hide();
+      }
+    });
   }
 };

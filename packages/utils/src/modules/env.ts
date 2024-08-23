@@ -1,6 +1,6 @@
 import { app } from "electron";
 
-export interface Env {
+export interface IEnv {
   version: {
     electron: string;
     chrome: string;
@@ -9,7 +9,7 @@ export interface Env {
   };
 }
 
-export const env: Env = {
+export const env: IEnv = {
   version: {
     electron: process.versions.electron,
     chrome: process.versions.chrome,

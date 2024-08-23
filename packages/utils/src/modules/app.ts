@@ -1,7 +1,7 @@
 import { BrowserWindow, Menu, app } from "electron";
 import { is } from "./is";
 
-export interface Application {
+export interface IApplication {
   /**
    * Ensures that only a single instance of the application is running.
    * If another instance is already running, the application will exit.
@@ -20,7 +20,7 @@ export interface Application {
   quitOnAllWindowsClosed: (createWindow: () => void) => void;
 }
 
-export const application: Application = {
+export const application: IApplication = {
   ensureSingleton: (window?: BrowserWindow) => {
     if (app.requestSingleInstanceLock()) {
       app.on("second-instance", () => window?.show());
