@@ -1,6 +1,6 @@
 {
   "name": "@electron-suite/utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utils for Electron",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -33,9 +33,11 @@
   "scripts": {
     "build": "unbuild"
   },
-  "peerDependencies": {
-    "electron": ">=32.0.0",
+  "dependencies": {
     "electron-window-state": "^5.0.3",
     "i18next": "^23.12.3"
+  },
+  "peerDependencies": {
+    "electron": ">=32.0.0"
   }
 }

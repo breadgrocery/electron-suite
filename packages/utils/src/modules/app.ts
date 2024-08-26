@@ -24,6 +24,7 @@ export const application: IApplication = {
   ensureSingleton: (window?: BrowserWindow) => {
     if (app.requestSingleInstanceLock()) {
       app.on("second-instance", () => window?.show());
+      app.on("quit", () => app.releaseSingleInstanceLock());
     } else {
       app.quit();
     }
