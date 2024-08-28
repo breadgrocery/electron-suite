@@ -16,6 +16,9 @@ export const windowIPC: WindowIPC = {
     ipcMain.handle("window-is-maximized", () => window.isMaximized());
   },
   registerWindowEventHandlers: (window: BrowserWindow) => {
+    window.on("always-on-top-changed", (_, isAlwaysOnTop) =>
+      window.webContents.send("window-always-on-top-changed", isAlwaysOnTop)
+    );
     window.on("minimize", () => window.webContents.send("window-minimize"));
     window.on("restore", () => window.webContents.send("window-restore"));
     window.on("maximize", () => window.webContents.send("window-maximize"));
