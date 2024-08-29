@@ -1,4 +1,4 @@
-import { BrowserWindow, Menu, app } from "electron";
+import { BrowserWindow, app } from "electron";
 import { is } from "./is";
 
 export interface IApplication {
@@ -7,11 +7,6 @@ export interface IApplication {
    * If another instance is already running, the application will exit.
    */
   ensureSingleton: (window?: BrowserWindow) => void;
-
-  /**
-   * Disables the menu bar.
-   */
-  disableMenuBar: () => void;
 
   /**
    * Quits when all windows are closed.
@@ -28,9 +23,6 @@ export const application: IApplication = {
     } else {
       app.quit();
     }
-  },
-  disableMenuBar: () => {
-    Menu.setApplicationMenu(Menu.buildFromTemplate([]));
   },
   quitOnAllWindowsClosed: (createWindow: () => void) => {
     if (is.platform.macOS) {

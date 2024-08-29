@@ -11,6 +11,7 @@ export const windowIPC: WindowIPC = {
     ipcMain.on("window-minimize", () => window.minimize());
     ipcMain.on("window-maximize", () => window.maximize());
     ipcMain.on("window-unmaximize", () => window.unmaximize());
+    ipcMain.on("window-restore", () => window.restore());
     ipcMain.on("window-close", () => window.close());
     ipcMain.handle("window-is-always-on-top", () => window.isAlwaysOnTop());
     ipcMain.handle("window-is-maximized", () => window.isMaximized());
@@ -20,9 +21,9 @@ export const windowIPC: WindowIPC = {
       window.webContents.send("window-always-on-top-changed", isAlwaysOnTop)
     );
     window.on("minimize", () => window.webContents.send("window-minimize"));
-    window.on("restore", () => window.webContents.send("window-restore"));
     window.on("maximize", () => window.webContents.send("window-maximize"));
     window.on("unmaximize", () => window.webContents.send("window-unmaximize"));
+    window.on("restore", () => window.webContents.send("window-restore"));
     window.on("close", () => window.webContents.send("window-close"));
   }
 };

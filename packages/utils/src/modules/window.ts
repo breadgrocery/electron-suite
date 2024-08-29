@@ -1,17 +1,7 @@
-import { BrowserWindow, app, nativeTheme, shell } from "electron";
+import { BrowserWindow, Menu, app, nativeTheme, shell } from "electron";
 import windowStateKeeper, { Options } from "electron-window-state";
 
 export interface IWindow {
-  /**
-   * Persist and restore the window state across application sessions.
-   */
-  persistWindowState: (window: BrowserWindow, options?: Options) => void;
-
-  /**
-   * Opens `_blank` target links in an external browser.
-   */
-  useExternalBrowser: (window: BrowserWindow) => void;
-
   /**
    * Adjusts background color based on the current color scheme (light or dark).
    *
@@ -28,29 +18,24 @@ export interface IWindow {
    * This prevents the application from exiting and keeps it running in the background.
    */
   closeToHide: (window: BrowserWindow) => void;
+
+  /**
+   * Disables the menu bar.
+   */
+  disableMenuBar: () => void;
+
+  /**
+   * Persist and restore the window state across application sessions.
+   */
+  persistWindowState: (window: BrowserWindow, options?: Options) => void;
+
+  /**
+   * Opens `_blank` target links in an external browser.
+   */
+  useExternalBrowser: (window: BrowserWindow) => void;
 }
 
 export const window: IWindow = {
-  persistWindowState: (window: BrowserWindow, options?: Options) => {
-    // Restore window size
-    const windowState = windowStateKeeper(options || {});
-    const bounds = window.getBounds();
-    window.setBounds({
-      width: windowState.width || bounds.width,
-      height: windowState.height || bounds.height,
-      x: windowState.x || bounds.x,
-      y: windowState.y || bounds.y
-    });
-
-    // Register listeners
-    windowState.manage(window);
-  },
-  useExternalBrowser: (window: BrowserWindow) => {
-    window.webContents.setWindowOpenHandler(details => {
-      shell.openExternal(details.url);
-      return { action: "deny" };
-    });
-  },
   adaptBackgroundColorScheme: (window: BrowserWindow, lightColor?: string, darkColor?: string) => {
     const updatebackgroundColor = () => {
       const light = lightColor || "#FFFFFF";
@@ -69,6 +54,29 @@ export const window: IWindow = {
         event.preventDefault();
         window.hide();
       }
+    });
+  },
+  disableMenuBar: () => {
+    Menu.setApplicationMenu(Menu.buildFromTemplate([]));
+  },
+  persistWindowState: (window: BrowserWindow, options?: Options) => {
+    // Restore window size
+    const windowState = windowStateKeeper(options || {});
+    const bounds = window.getBounds();
+    window.setBounds({
+      width: windowState.width || bounds.width,
+      height: windowState.height || bounds.height,
+      x: windowState.x || bounds.x,
+      y: windowState.y || bounds.y
+    });
+
+    // Register listeners
+    windowState.manage(window);
+  },
+  useExternalBrowser: (window: BrowserWindow) => {
+    window.webContents.setWindowOpenHandler(details => {
+      shell.openExternal(details.url);
+      return { action: "deny" };
     });
   }
 };

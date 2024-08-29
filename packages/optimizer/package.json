@@ -1,6 +1,6 @@
 {
   "name": "@electron-suite/optimizer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Optimizer for Electron",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
