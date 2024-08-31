@@ -1,7 +1,12 @@
-import { BrowserWindow, app } from "electron";
+import { BrowserWindow, Menu, app } from "electron";
 import { is } from "./is";
 
 export interface IApplication {
+  /**
+   * Disables the menu bar.
+   */
+  disableMenuBar: () => void;
+
   /**
    * Ensures that only a single instance of the application is running.
    * If another instance is already running, the application will exit.
@@ -16,6 +21,9 @@ export interface IApplication {
 }
 
 export const application: IApplication = {
+  disableMenuBar: () => {
+    Menu.setApplicationMenu(Menu.buildFromTemplate([]));
+  },
   ensureSingleton: (window?: BrowserWindow) => {
     if (app.requestSingleInstanceLock()) {
       app.on("second-instance", () => window?.show());

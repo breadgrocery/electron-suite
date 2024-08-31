@@ -21,7 +21,8 @@ const createWindow = () => {
     webPreferences: {
       preload: join(__dirname, "./preload.js"),
       webSecurity: false,
-      sandbox: false
+      sandbox: false,
+      devTools: true
     }
   });
 
@@ -104,7 +105,7 @@ createApp({
       "zh"
     );
   },
-  onWindowCreated: mainWindow => {
+  onWindowCreated: (mainWindow: BrowserWindow) => {
     // Utils application
     application.ensureSingleton(mainWindow);
     application.disableMenuBar();
@@ -117,7 +118,11 @@ createApp({
     window.closeToHide(mainWindow);
 
     // Optimizations
+    optimizer.misc.disableSecurityWarnings();
     optimizer.windows.disableTitlebarContextMenu(mainWindow);
+
+    // Open devTools
+    mainWindow.webContents.openDevTools();
   },
   createTray
 });

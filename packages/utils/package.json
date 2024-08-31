@@ -1,6 +1,6 @@
 {
   "name": "@electron-suite/utils",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "Utils for Electron",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -34,8 +34,13 @@
     "build": "unbuild"
   },
   "dependencies": {
+    "electron-store": "8.2.0",
     "electron-window-state": "^5.0.3",
-    "i18next": "^23.12.3"
+    "i18next": "^23.12.3",
+    "lodash.merge": "^4.6.2"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.9"
   },
   "peerDependencies": {
     "electron": ">=32.0.0"

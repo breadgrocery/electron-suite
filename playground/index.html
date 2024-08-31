@@ -7,6 +7,19 @@
   <body>
     <a href="https://www.electronjs.org/" target="_blank">Electron Docs</a>
 
+    <div>
+      <input type="text" id="text" />
+      <button id="store">store</button>
+    </div>
+
     <script src="./dist/renderer.js"></script>
+    <script>
+      document.getElementById("store").onclick = () => {
+        window.electron.ipcRenderer.send(
+          "store:demo:set-text",
+          document.getElementById("text").value
+        );
+      };
+    </script>
   </body>
 </html>

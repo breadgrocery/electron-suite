@@ -1,4 +1,4 @@
-import { BrowserWindow, Menu, app, nativeTheme, shell } from "electron";
+import { BrowserWindow, app, nativeTheme, shell } from "electron";
 import windowStateKeeper, { Options } from "electron-window-state";
 
 export interface IWindow {
@@ -18,11 +18,6 @@ export interface IWindow {
    * This prevents the application from exiting and keeps it running in the background.
    */
   closeToHide: (window: BrowserWindow) => void;
-
-  /**
-   * Disables the menu bar.
-   */
-  disableMenuBar: () => void;
 
   /**
    * Persist and restore the window state across application sessions.
@@ -56,9 +51,7 @@ export const window: IWindow = {
       }
     });
   },
-  disableMenuBar: () => {
-    Menu.setApplicationMenu(Menu.buildFromTemplate([]));
-  },
+
   persistWindowState: (window: BrowserWindow, options?: Options) => {
     // Restore window size
     const windowState = windowStateKeeper(options || {});
