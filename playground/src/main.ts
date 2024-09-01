@@ -10,6 +10,7 @@ import {
   shell
 } from "electron";
 import { join } from "path";
+import { demoStore } from "./store/demo";
 
 const createWindow = () => {
   // Create the browser window.
@@ -104,6 +105,8 @@ createApp({
       },
       "zh"
     );
+
+    demoStore.main.set("enable", false);
   },
   onWindowCreated: (mainWindow: BrowserWindow) => {
     // Utils application

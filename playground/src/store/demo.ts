@@ -1,14 +1,12 @@
-import { createReactiveStore } from "@electron-suite/utils";
+import { createStore } from "@electron-suite/utils";
+
+const id = "demo";
 
 const defaults = {
-  text: "content",
   foo: {
-    bar: 123456,
-    abc: true as boolean
-  }
+    bar: "hello world"
+  },
+  enable: true
 };
 
-export const demoStore = createReactiveStore({
-  id: "demo",
-  defaults
-});
+export const demoStore = createStore({ id, defaults }).store;

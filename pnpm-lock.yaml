@@ -64,6 +64,9 @@ importers:
 
   packages/utils:
     dependencies:
+      dot-path-value:
+        specifier: ^0.0.10
+        version: 0.0.10
       electron:
         specifier: ">=32.0.0"
         version: 32.0.1
@@ -2042,6 +2045,12 @@ packages:
     resolution:
       {
         integrity: sha512-H78uMmQtI2AhgDJjWeQmHwJJ2bLPD3GMmO7Zja/ZZh84wkm+4ut+IUnUdRa8uCGX88DiVx1j6FRe1XfxEgjEZA==
+      }
+
+  dot-path-value@0.0.10:
+    resolution:
+      {
+        integrity: sha512-MrVpDoFwk1xjeM0sGRuei7N3LQOylJ9iamgfxAQwPY0hPnDHL981hM/KpoQwFHMckgjZvJA0MyH7VN//ernFFA==
       }
 
   dot-prop@5.3.0:
@@ -5965,6 +5974,8 @@ snapshots:
       dom-serializer: 2.0.0
       domelementtype: 2.3.0
       domhandler: 5.0.3
+
+  dot-path-value@0.0.10: {}
 
   dot-prop@5.3.0:
     dependencies:
