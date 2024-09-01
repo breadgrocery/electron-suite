@@ -1,6 +1,6 @@
-import { Path, PathValue } from "dot-path-value";
-import { app, ipcMain, ipcRenderer } from "electron";
+import { app, ipcMain } from "electron";
 import ElectronStore from "electron-store";
+import merge from "lodash.merge";
 import { whenAppIsReady } from "./hooks";
 
 export type Serializable = Record<string, unknown>;
@@ -24,12 +24,16 @@ interface Options<T extends Serializable> {
    * Default values
    */
   defaults: T;
+  /**
+   * Register ipcMain listeners (defaults to false)
+   */
+  ipcListeners?: boolean;
 }
 
 const channel = (method: string, id: string) => `store-${method}:${id}`;
 
-export const createStore = <T extends Serializable>(options: Options<T>) => {
-  const { id, name = id, path = app.getPath("userData"), defaults } = options;
+export const createStore = <T extends Serializable>(options: Options<T>): Store<T> => {
+  const { id, name = id, path = app.getPath("userData"), defaults, ipcListeners = true } = options;
   const store = new ElectronStore<T>({
     name: name,
     cwd: path,
@@ -40,39 +44,45 @@ export const createStore = <T extends Serializable>(options: Options<T>) => {
     defaults: defaults
   });
 
-  // Register ipcMain listeners
-  whenAppIsReady(() => {
-    ipcMain.on(channel("clear", id), () => store.clear());
-    ipcMain.on(channel("delete", id), (_, key) => store.delete(key));
-    ipcMain.handle(channel("get", id), (_, key) => store.get(key));
-    ipcMain.handle(channel("has", id), (_, key) => store.has(key));
-    ipcMain.on(channel("reset", id), () => store.reset());
-    ipcMain.on(channel("set", id), (_, key, value) => store.set(key, value));
-  });
+  // New items' default value deep migration
+  const data = store.store;
+  store.clear();
+  store.set(merge(store.store, data));
 
-  return {
-    store: {
-      main: store,
-      renderer: {
-        clear: () => {
-          ipcRenderer.send(channel("clear", id));
-        },
-        delete: (key: Path<T>) => {
-          ipcRenderer.send(channel("delete", id), key);
-        },
-        get: <P extends Path<T>>(key: Path<T>): Promise<PathValue<T, P>> => {
-          return ipcRenderer.invoke(channel("get", id), key);
-        },
-        has: (key: Path<T>): Promise<boolean> => {
-          return ipcRenderer.invoke(channel("has", id), key);
-        },
-        reset: () => {
-          ipcRenderer.send(channel("reset", id));
-        },
-        set: <P extends Path<T>>(key: Path<T>, value: PathValue<T, P>) => {
-          ipcRenderer.send(channel("set", id), key, value);
-        }
+  // Register ipcMain listeners
+  if (ipcListeners) {
+    whenAppIsReady(() => {
+      ipcMain.on(channel("clear", id), () => store.clear());
+      ipcMain.on(channel("delete", id), (_, key) => store.delete(key));
+      ipcMain.handle(channel("get", id), (_, key) => store.get(key));
+      ipcMain.handle(channel("has", id), (_, key) => store.has(key));
+      ipcMain.on(channel("reset", id), () => store.reset());
+      ipcMain.on(channel("set", id), (_, key, value) => store.set(key, value));
+      ipcMain.on(channel("patch", id), (_, value) => store.set(value));
+    });
+  }
+
+  return store;
+};
+
+export const createReactiveStore = <T extends Serializable>(options: Options<T>): T => {
+  // Create the proxied store
+  const store = createStore(options);
+
+  const proxyHandler: ProxyHandler<T> = {
+    set(target, property, value) {
+      target[property as keyof T] = value;
+      store.set(property as keyof T, value);
+      return true;
+    },
+    get(target, property) {
+      const result = target[property as keyof T];
+      if (result && typeof result === "object") {
+        return new Proxy(result, proxyHandler as ProxyHandler<typeof result>);
       }
+      return result;
     }
   };
+
+  return new Proxy(store.store, proxyHandler);
 };

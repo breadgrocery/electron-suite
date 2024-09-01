@@ -106,7 +106,7 @@ createApp({
       "zh"
     );
 
-    demoStore.main.set("enable", false);
+    demoStore.set("enable", false);
   },
   onWindowCreated: (mainWindow: BrowserWindow) => {
     // Utils application

@@ -4,9 +4,10 @@ const id = "demo";
 
 const defaults = {
   foo: {
-    bar: "hello world"
+    bar: "hello world",
+    fuck: "oh"
   },
   enable: true
 };
 
-export const demoStore = createStore({ id, defaults }).store;
+export const demoStore = createStore({ id, defaults });
