@@ -1,3 +1,4 @@
+import AutoLaunch from "auto-launch";
 import { BrowserWindow, Menu, app } from "electron";
 import { is } from "./is";
 
@@ -10,14 +11,24 @@ export interface IApplication {
   /**
    * Ensures that only a single instance of the application is running.
    * If another instance is already running, the application will exit.
+   *
+   * @param window The window to show when a second instance is detected.
    */
   ensureSingleton: (window?: BrowserWindow) => void;
 
   /**
    * Quits when all windows are closed.
+   *
    * @param createWindow Callback to create a window if activated from macOS dock.
    */
   quitOnAllWindowsClosed: (createWindow: () => void) => void;
+
+  /**
+   * Configures the application's auto-launch behavior.
+   *
+   * @param enable Whether to enable or disable auto-launch.
+   */
+  setAutoLaunch: (enable: boolean) => void;
 }
 
 export const application: IApplication = {
@@ -44,5 +55,16 @@ export const application: IApplication = {
         app.quit();
       });
     }
+  },
+  setAutoLaunch: (enable: boolean) => {
+    const launcher = new AutoLaunch({ name: app.name });
+    launcher.isEnabled().then(isEnabled => {
+      if (enable === isEnabled) return;
+      if (enable) {
+        launcher.enable();
+      } else {
+        launcher.disable();
+      }
+    });
   }
 };

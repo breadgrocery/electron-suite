@@ -4,8 +4,7 @@ const id = "demo";
 
 const defaults = {
   foo: {
-    bar: "hello world",
-    fuck: "oh"
+    bar: "hello world"
   },
   enable: true
 };

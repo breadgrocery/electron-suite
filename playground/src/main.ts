@@ -113,6 +113,7 @@ createApp({
     application.ensureSingleton(mainWindow);
     application.disableMenuBar();
     application.quitOnAllWindowsClosed(createWindow);
+    application.setAutoLaunch(false);
 
     // Utils window
     window.persistWindowState(mainWindow);

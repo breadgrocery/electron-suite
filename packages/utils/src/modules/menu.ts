@@ -4,6 +4,10 @@ export interface IMenu {
   /**
    * Localizes the provided menu by translating its labels
    * using the provided localization function.
+   *
+   * @param menu The menu to be localized.
+   *
+   * @param i18n The localization function.
    */
   localize: (menu: Menu, i18n: (label: string) => string) => Menu;
 }

@@ -64,6 +64,9 @@ importers:
 
   packages/utils:
     dependencies:
+      auto-launch:
+        specifier: ^5.0.6
+        version: 5.0.6
       electron:
         specifier: ">=32.0.0"
         version: 32.0.1
@@ -80,6 +83,9 @@ importers:
         specifier: ^4.6.2
         version: 4.6.2
     devDependencies:
+      "@types/auto-launch":
+        specifier: ^5.0.5
+        version: 5.0.5
       "@types/lodash.merge":
         specifier: ^4.6.9
         version: 4.6.9
@@ -1214,6 +1220,12 @@ packages:
       }
     engines: { node: ">=10.13.0" }
 
+  "@types/auto-launch@5.0.5":
+    resolution:
+      {
+        integrity: sha512-/nGvQZSzM/pvCMCh4Gt2kIeiUmOP/cKGJbjlInI+A+5MoV/7XmT56DJ6EU8bqc3+ItxEe4UC2GVspmPzcCc8cg==
+      }
+
   "@types/cacheable-request@6.0.3":
     resolution:
       {
@@ -1481,6 +1493,12 @@ packages:
       }
     engines: { node: ">=12" }
 
+  applescript@1.0.0:
+    resolution:
+      {
+        integrity: sha512-yvtNHdWvtbYEiIazXAdp/NY+BBb65/DAseqlNiJQjOx9DynuzOYDbVLBJvuc0ve0VL9x6B3OHF6eH52y9hCBtQ==
+      }
+
   argparse@1.0.10:
     resolution:
       {
@@ -1512,6 +1530,13 @@ packages:
         integrity: sha512-Xcz9l0z7y9yQ9rdDaxlmaI4uJHf/T8g9hOEzJcsEqX2SjCj4J20uK7+ldkDHMbpJDK76wF7xEIgxc/vSlsfw5w==
       }
     engines: { node: ">=10.12.0" }
+
+  auto-launch@5.0.6:
+    resolution:
+      {
+        integrity: sha512-OgxiAm4q9EBf9EeXdPBiVNENaWE3jUZofwrhAkWjHDYGezu1k3FRZHU8V2FBxGuSJOHzKmTJEd0G7L7/0xDGFA==
+      }
+    engines: { node: ">=4.0.0" }
 
   autoprefixer@10.4.20:
     resolution:
@@ -4531,6 +4556,13 @@ packages:
       }
     engines: { node: ">= 4.0.0" }
 
+  untildify@3.0.3:
+    resolution:
+      {
+        integrity: sha512-iSk/J8efr8uPT/Z4eSUywnqyrQU7DSdMfdqK4iWEaUVVmcP5JcnpRqmVMwcwcnmI1ATFNgC5V90u09tBynNFKA==
+      }
+    engines: { node: ">=4" }
+
   untyped@1.4.2:
     resolution:
       {
@@ -4580,6 +4612,12 @@ packages:
       }
     engines: { node: ">= 8" }
     hasBin: true
+
+  winreg@1.2.4:
+    resolution:
+      {
+        integrity: sha512-IHpzORub7kYlb8A43Iig3reOvlcBJGX9gZ0WycHhghHtA65X0LYnMRuJs+aH1abVnMJztQkvQNlltnbPi5aGIA==
+      }
 
   word-wrap@1.2.5:
     resolution:
@@ -5434,6 +5472,8 @@ snapshots:
 
   "@trysound/sax@0.2.0": {}
 
+  "@types/auto-launch@5.0.5": {}
+
   "@types/cacheable-request@6.0.3":
     dependencies:
       "@types/http-cache-semantics": 4.0.4
@@ -5614,6 +5654,8 @@ snapshots:
 
   ansi-styles@6.2.1: {}
 
+  applescript@1.0.0: {}
+
   argparse@1.0.10:
     dependencies:
       sprintf-js: 1.0.3
@@ -5625,6 +5667,14 @@ snapshots:
   array-union@2.1.0: {}
 
   atomically@1.7.0: {}
+
+  auto-launch@5.0.6:
+    dependencies:
+      applescript: 1.0.0
+      mkdirp: 0.5.6
+      path-is-absolute: 1.0.1
+      untildify: 3.0.3
+      winreg: 1.2.4
 
   autoprefixer@10.4.20(postcss@8.4.41):
     dependencies:
@@ -7386,6 +7436,8 @@ snapshots:
 
   universalify@0.1.2: {}
 
+  untildify@3.0.3: {}
+
   untyped@1.4.2:
     dependencies:
       "@babel/core": 7.25.2
@@ -7422,6 +7474,8 @@ snapshots:
   which@2.0.2:
     dependencies:
       isexe: 2.0.0
+
+  winreg@1.2.4: {}
 
   word-wrap@1.2.5: {}
 
