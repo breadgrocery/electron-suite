@@ -3,7 +3,7 @@ import i18next, { Resource } from "i18next";
 import { is } from "./is";
 
 /**
- * Initializes the i18n configuration with the provided localization messages.
+ * Initialize the i18n configuration with the provided localization messages.
  *
  * @param messages An object containing localization resources.
  *

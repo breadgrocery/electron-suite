@@ -1,5 +1,15 @@
 import { optimizer } from "@electron-suite/optimizer";
-import { application, createApp, env, i18nInit, is, menu, t, window } from "@electron-suite/utils";
+import {
+  application,
+  createApp,
+  env,
+  i18nInit,
+  is,
+  menu,
+  scheme,
+  t,
+  window
+} from "@electron-suite/utils";
 import {
   BrowserWindow,
   Menu,
@@ -120,6 +130,11 @@ createApp({
     window.useExternalBrowser(mainWindow);
     window.adaptBackgroundColorScheme(mainWindow, "#9FEAF9", "#1B1C26");
     window.closeToHide(mainWindow);
+
+    // Utils scheme
+    scheme.registerSchemeHandler("my-scheme-test", (_, url) => {
+      console.log(url);
+    });
 
     // Optimizations
     optimizer.misc.disableSecurityWarnings();

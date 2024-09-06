@@ -2,7 +2,7 @@ import { Menu, MenuItem, MenuItemConstructorOptions } from "electron";
 
 export interface IMenu {
   /**
-   * Localizes the provided menu by translating its labels
+   * Localize the provided menu by translating its labels
    * using the provided localization function.
    *
    * @param menu The menu to be localized.

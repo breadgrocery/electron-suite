@@ -12,11 +12,16 @@
       <button id="store">store</button>
     </div>
 
+    <div>
+      <a href="my-scheme-test://hello wolrd">my-scheme-test</a>
+    </div>
+
     <script src="./dist/renderer.js"></script>
     <script>
       document.getElementById("store").onclick = () => {
         window.electron.ipcRenderer.send(
-          "store:demo:set-text",
+          "store-set:demo",
+          "foo.bar",
           document.getElementById("text").value
         );
       };

@@ -4,12 +4,12 @@ import { is } from "./is";
 
 export interface IApplication {
   /**
-   * Disables the menu bar.
+   * Disable the menu bar.
    */
   disableMenuBar: () => void;
 
   /**
-   * Ensures that only a single instance of the application is running.
+   * Ensure that only a single instance of the application is running.
    * If another instance is already running, the application will exit.
    *
    * @param window The window to show when a second instance is detected.
@@ -17,14 +17,14 @@ export interface IApplication {
   ensureSingleton: (window?: BrowserWindow) => void;
 
   /**
-   * Quits when all windows are closed.
+   * Quit when all windows are closed.
    *
    * @param createWindow Callback to create a window if activated from macOS dock.
    */
   quitOnAllWindowsClosed: (createWindow: () => void) => void;
 
   /**
-   * Configures the application's auto-launch behavior.
+   * Configure the application's auto-launch behavior.
    *
    * @param enable Whether to enable or disable auto-launch.
    */

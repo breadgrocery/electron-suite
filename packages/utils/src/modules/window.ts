@@ -3,7 +3,7 @@ import windowStateKeeper, { Options } from "electron-window-state";
 
 export interface IWindow {
   /**
-   * Adjusts background color based on the current color scheme (light or dark).
+   * Adjust background color based on the current color scheme (light or dark).
    *
    * @param lightColor The background color to use in light mode.
    * @param darkColor The background color to use in dark mode.
@@ -15,7 +15,7 @@ export interface IWindow {
   ) => void;
 
   /**
-   * This prevents the application from exiting and keeps it running in the background.
+   * Prevent the application from exiting and keeps it running in the background.
    */
   closeToHide: (window: BrowserWindow) => void;
 

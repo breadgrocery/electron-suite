@@ -30,7 +30,7 @@ interface Options<T extends Serializable> {
   ipcListeners?: boolean;
 }
 
-const channel = (method: string, id: string) => `store-${method}:${id}`;
+export const storeChannel = (method: string, id: string) => `store-${method}:${id}`;
 
 export const createStore = <T extends Serializable>(options: Options<T>): Store<T> => {
   const { id, name = id, path = app.getPath("userData"), defaults, ipcListeners = true } = options;
@@ -52,13 +52,13 @@ export const createStore = <T extends Serializable>(options: Options<T>): Store<
   // Register ipcMain listeners
   if (ipcListeners) {
     whenAppIsReady(() => {
-      ipcMain.on(channel("clear", id), () => store.clear());
-      ipcMain.on(channel("delete", id), (_, key) => store.delete(key));
-      ipcMain.handle(channel("get", id), (_, key) => store.get(key));
-      ipcMain.handle(channel("has", id), (_, key) => store.has(key));
-      ipcMain.on(channel("reset", id), () => store.reset());
-      ipcMain.on(channel("set", id), (_, key, value) => store.set(key, value));
-      ipcMain.on(channel("patch", id), (_, value) => store.set(value));
+      ipcMain.on(storeChannel("clear", id), () => store.clear());
+      ipcMain.on(storeChannel("delete", id), (_, key) => store.delete(key));
+      ipcMain.handle(storeChannel("get", id), (_, key) => store.get(key));
+      ipcMain.handle(storeChannel("has", id), (_, key) => store.has(key));
+      ipcMain.on(storeChannel("reset", id), () => store.reset());
+      ipcMain.on(storeChannel("set", id), (_, key, value) => store.set(key, value));
+      ipcMain.on(storeChannel("patch", id), (_, value) => store.set(value));
     });
   }
 
